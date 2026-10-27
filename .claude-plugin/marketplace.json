@@ -12,7 +12,7 @@
       "source": "./",
       "displayName": "Assistant SYSCOHADA (OHADA)",
       "description": "Assistant comptable SYSCOHADA révisé, en français : plan comptable, écritures, rapprochement mobile money, compte de résultat, passage IFRS.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "license": "MIT",
       "keywords": [
         "syscohada",

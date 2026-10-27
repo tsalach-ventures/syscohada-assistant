@@ -1,7 +1,7 @@
 {
   "name": "syscohada-assistant",
   "displayName": "Assistant SYSCOHADA (OHADA)",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "French-language accounting assistant for the 17 OHADA member states (SYSCOHADA révisé): chart of accounts, journal entries, mobile money reconciliation, income statement and SYSCOHADA-to-IFRS bridge. Assistant comptable SYSCOHADA révisé, en français.",
   "author": {
     "name": "Tsalach Ventures LLC",
@@ -10,6 +10,10 @@
   },
   "homepage": "https://github.com/tsalach-ventures/syscohada-assistant",
   "repository": "https://github.com/tsalach-ventures/syscohada-assistant",
+  "documentationUrl": "https://github.com/tsalach-ventures/syscohada-assistant#readme",
+  "supportUrl": "https://github.com/tsalach-ventures/syscohada-assistant/issues",
+  "privacyPolicyUrl": "https://github.com/tsalach-ventures/syscohada-assistant/blob/main/PRIVACY.md",
+  "termsOfServiceUrl": "https://github.com/tsalach-ventures/syscohada-assistant/blob/main/LICENSE",
   "license": "MIT",
   "keywords": [
     "syscohada",

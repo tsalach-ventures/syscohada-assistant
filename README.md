@@ -3,8 +3,9 @@
 Plugin pour Claude (Cowork et Claude Code) qui aide les comptables, dirigeants de PME et directions
 financières de l'espace OHADA à appliquer le SYSCOHADA révisé, en français.
 
-> Version 0.1.1 — relue par un expert-comptable (octobre 2026) ; ses arbitrages sont intégrés (rubriques
-> financières du compte de résultat, frais et TVA des opérateurs mobile money, comptes 552 et 585).
+> Version 0.1.2 — contenu comptable relu par un expert-comptable (octobre 2026) ; ses arbitrages sont
+> intégrés (rubriques financières du compte de résultat, frais et TVA des opérateurs mobile money,
+> comptes 552 et 585).
 
 ## Ce que fait le plugin
 
@@ -28,7 +29,8 @@ restent propres à chaque État : le plugin demande le taux applicable au lieu d
   /plugin install syscohada-assistant@tsalach-ventures
   ```
 
-- **Cowork** : importer le fichier `.plugin` de la version publiée.
+- **Cowork** : importer le fichier `.plugin` joint à la dernière version publiée (onglet *Releases* du
+  dépôt).
 - **Annuaire des plugins Claude** : lien ajouté ici après publication.
 
 ## Exemple : rapprochement mobile money
@@ -55,7 +57,11 @@ Formats acceptés : `skills/mobile-money/references/format-csv.md`.
 
 - Le plugin ne collecte, ne stocke et ne transmet aucune donnée : il contient des instructions pour Claude
   et un script qui s'exécute localement sur les fichiers fournis par l'utilisateur.
+- Ce que le script exécute : `rapprocher.py` n'utilise que la bibliothèque standard de Python et n'accède
+  pas au réseau. Il lit le relevé CSV (et, en option, la liste des pièces), affiche un résumé et écrit un
+  fichier CSV de résultat (par défaut `rapprochement.csv` dans le dossier courant).
 - Le script de rapprochement masque les numéros de téléphone dans son fichier de sortie.
+- Détails : [PRIVACY.md](PRIVACY.md). Signaler une vulnérabilité : [SECURITY.md](SECURITY.md).
 - Contact : steph@tsalach.ventures
 
 ## Sources
@@ -78,4 +84,8 @@ Licence MIT. Édité par Tsalach Ventures LLC.
 French-language Claude plugin for the 17 OHADA member states (SYSCOHADA révisé accounting framework):
 chart of accounts lookup, balanced journal entries, mobile money statement reconciliation (read-only
 script), income statement from a trial balance, and a SYSCOHADA-to-IFRS restatement checklist. It
-collects no data and never executes payments. Version 0.1.0 is pending review by a chartered accountant.
+collects no data and never executes payments. Its only executable part is a local Python script (standard
+library only, no network access) that reads a CSV statement, optionally a CSV list of invoices, and writes
+one CSV result file. Version 0.1.2: the accounting content was reviewed by a chartered accountant in
+October 2026. Independent project, not affiliated with or endorsed by OHADA. Privacy: [PRIVACY.md](PRIVACY.md).
+Security: [SECURITY.md](SECURITY.md).

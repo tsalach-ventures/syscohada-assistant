@@ -1,5 +1,18 @@
 # Journal des versions
 
+## 0.1.2 — 27/10/2026
+
+Préparation de la fiche dans l'annuaire des plugins Claude. Le contenu comptable des skills ne change pas :
+c'est celui de la version 0.1.1, relue par un expert-comptable.
+
+- Icône du plugin (compte en T, aux couleurs de Tsalach Ventures) pour la fiche de l'annuaire.
+- Liens de la fiche dans `plugin.json` : documentation, support (issues GitHub), politique de confidentialité
+  et conditions d'utilisation (licence MIT).
+- Nouveaux fichiers `PRIVACY.md` (confidentialité) et `SECURITY.md` (signalement d'une vulnérabilité), en
+  français et en anglais.
+- README : ce que le script de rapprochement exécute (bibliothèque standard Python, aucun accès réseau) ;
+  résumé anglais mis à jour.
+
 ## 0.1.1 — 07/10/2026
 
 Arbitrages issus de la relecture par un expert-comptable.
