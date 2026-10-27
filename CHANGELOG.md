@@ -1,5 +1,10 @@
 # Journal des versions
 
+## 0.1.3 — 27/10/2026
+
+L'icône de la fiche est désormais déclarée dans le manifeste (champ icon de plugin.json), en plus de son
+emplacement par défaut. Aucun autre changement.
+
 ## 0.1.2 — 27/10/2026
 
 Préparation de la fiche dans l'annuaire des plugins Claude. Le contenu comptable des skills ne change pas :

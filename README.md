@@ -3,7 +3,7 @@
 Plugin pour Claude (Cowork et Claude Code) qui aide les comptables, dirigeants de PME et directions
 financières de l'espace OHADA à appliquer le SYSCOHADA révisé, en français.
 
-> Version 0.1.2 — contenu comptable relu par un expert-comptable (octobre 2026) ; ses arbitrages sont
+> Version 0.1.3 — contenu comptable relu par un expert-comptable (octobre 2026) ; ses arbitrages sont
 > intégrés (rubriques financières du compte de résultat, frais et TVA des opérateurs mobile money,
 > comptes 552 et 585).
 
@@ -86,6 +86,6 @@ chart of accounts lookup, balanced journal entries, mobile money statement recon
 script), income statement from a trial balance, and a SYSCOHADA-to-IFRS restatement checklist. It
 collects no data and never executes payments. Its only executable part is a local Python script (standard
 library only, no network access) that reads a CSV statement, optionally a CSV list of invoices, and writes
-one CSV result file. Version 0.1.2: the accounting content was reviewed by a chartered accountant in
+one CSV result file. Version 0.1.3: the accounting content was reviewed by a chartered accountant in
 October 2026. Independent project, not affiliated with or endorsed by OHADA. Privacy: [PRIVACY.md](PRIVACY.md).
 Security: [SECURITY.md](SECURITY.md).
