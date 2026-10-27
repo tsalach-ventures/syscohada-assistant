@@ -1,0 +1,27 @@
+{
+  "name": "tsalach-ventures",
+  "owner": {
+    "name": "Tsalach Ventures LLC",
+    "email": "steph@tsalach.ventures",
+    "url": "https://tsalach.ventures"
+  },
+  "description": "Plugins Claude de Tsalach Ventures pour l'espace OHADA et l'Afrique francophone.",
+  "plugins": [
+    {
+      "name": "syscohada-assistant",
+      "source": "./",
+      "displayName": "Assistant SYSCOHADA (OHADA)",
+      "description": "Assistant comptable SYSCOHADA révisé, en français : plan comptable, écritures, rapprochement mobile money, compte de résultat, passage IFRS.",
+      "version": "0.1.1",
+      "license": "MIT",
+      "keywords": [
+        "syscohada",
+        "ohada",
+        "comptabilite",
+        "mobile-money",
+        "ifrs"
+      ],
+      "category": "finance"
+    }
+  ]
+}
