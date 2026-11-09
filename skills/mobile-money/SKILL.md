@@ -7,7 +7,7 @@ description: >
   Orange Money / Wave », « relevé MoMo », « compte 552 », ou fournit l'export CSV d'un portefeuille
   électronique d'entreprise dans l'espace OHADA.
 metadata:
-  version: "0.1.1"
+  version: "0.1.5"
 ---
 
 # Rapprochement mobile money (SYSCOHADA)
@@ -35,21 +35,18 @@ préparer les écritures. Travail en lecture seule.
 
 1. Obtenir l'export du relevé (CSV) et, si possible, la liste des factures clients et fournisseurs de la
    période (CSV).
-2. Exécuter le script de rapprochement de cette skill :
+2. Appliquer la méthode de `references/methode-rapprochement.md` ; les formats lus sont décrits dans
+   `references/format-csv.md`. Avec un outil d'exécution de code, écrire un court programme qui suit
+   exactement ces règles et l'exécuter sur les fichiers de l'utilisateur ; sinon, appliquer les règles ligne
+   par ligne. Ne jamais modifier les fichiers fournis.
 
-   ```bash
-   python3 ${CLAUDE_SKILL_DIR}/scripts/rapprocher.py --releve <releve.csv> --pieces <pieces.csv> --sortie rapprochement.csv
-   ```
-
-   Dans le chat de claude.ai, le dossier de la skill est copié dans l'environnement d'exécution : le script
-   s'y trouve à `scripts/rapprocher.py`, à côté de ce fichier.
-
-   Colonnes, formats et options : `references/format-csv.md`. Si une colonne n'est pas reconnue, relancer
-   avec `--col-date`, `--col-montant`, etc. Si l'entité n'a pas éclaté le compte 631, ajouter
-   `--compte-frais 6318`. Sans fichier de pièces, omettre `--pieces` : le script classe
-   alors seulement les frais, les transferts probables et le reste.
-3. Lire le résumé et le fichier de sortie. Présenter un tableau par statut : rapproché, frais, transfert
-   interne probable, non rapproché.
+   Paramètres par défaut : fenêtre de 60 jours, tolérance de 3 jours, frais en 6317 (6318 si l'entité n'a
+   pas éclaté le compte 631), numéros de téléphone masqués. Si une colonne indispensable n'est pas reconnue,
+   demander son intitulé à l'utilisateur. Sans fichier de pièces, classer seulement les frais, les transferts
+   probables et le reste.
+3. Présenter un tableau par statut (rapproché, frais, transfert interne probable, non rapproché), puis le
+   détail et, sur demande, un fichier CSV de résultat. En cas de doute sur l'application de la méthode, la
+   vérifier d'abord sur les fichiers d'exemple (résultat attendu ci-dessous).
 4. Préparer les écritures des lignes rapprochées, des frais et des transferts avec la skill `ecritures`
    (journal MM). Pour chaque ligne non rapprochée, poser une question précise (qui, pourquoi, quelle pièce).
 5. Contrôler le solde : le solde final du relevé doit égaler le solde du compte 552 (ou du sous-compte) après
@@ -60,7 +57,7 @@ préparer les écritures. Travail en lecture seule.
 
 - Ne jamais initier, valider ni exécuter un paiement, un transfert ou un retrait : préparer uniquement.
 - Les relevés contiennent des données personnelles (numéros de téléphone, noms). Ne pas les recopier sans
-  nécessité ; le script masque les numéros dans les libellés.
+  nécessité ; masquer les numéros dans tout ce qui est présenté ou exporté, comme le prévoit la méthode.
 - Ne pas déduire l'identité d'un payeur à partir d'un numéro de téléphone.
 - Ne pas considérer un rapprochement « montant et date » comme certain : le présenter comme proposition.
 
@@ -68,4 +65,4 @@ préparer les écritures. Travail en lecture seule.
 
 `examples/releve-exemple.csv` et `examples/pieces-exemple.csv` (données fictives) : 7 opérations, 3
 rapprochées, 3 lignes de frais, 2 transferts internes probables, 1 opération non rapprochée, 1 facture sans
-paiement.
+paiement, un solde final de 484 050 et un solde d'ouverture implicite de 250 000.

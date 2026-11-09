@@ -15,8 +15,9 @@ Seule la dernière version publiée reçoit des correctifs.
 
 ## Périmètre
 
-Le plugin n'exécute aucun paiement, ne demande aucun identifiant et n'accède pas au réseau. Sa seule partie
-exécutable, `skills/mobile-money/scripts/rapprocher.py`, lit des fichiers CSV et écrit un fichier CSV.
+Le plugin n'exécute aucun paiement, ne demande aucun identifiant, n'accède pas au réseau et ne contient
+aucun code exécutable : seulement des instructions (Markdown), des exemples fictifs (CSV) et son manifeste
+(JSON).
 
 ---
 
@@ -34,5 +35,5 @@ Only the latest published version receives fixes.
 
 ## Scope
 
-The plugin executes no payments, asks for no credentials and has no network access. Its only executable
-part, `skills/mobile-money/scripts/rapprocher.py`, reads CSV files and writes one CSV file.
+The plugin executes no payments, asks for no credentials, has no network access and contains no executable
+code: only instructions (Markdown), fictitious examples (CSV) and its manifest (JSON).

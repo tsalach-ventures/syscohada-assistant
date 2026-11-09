@@ -3,7 +3,7 @@
 Plugin pour Claude (Cowork et Claude Code) qui aide les comptables, dirigeants de PME et directions
 financières de l'espace OHADA à appliquer le SYSCOHADA révisé, en français.
 
-> Version 0.1.4 — contenu comptable relu par un expert-comptable (octobre 2026) ; ses arbitrages sont
+> Version 0.1.5 — contenu comptable relu par un expert-comptable (octobre 2026) ; ses arbitrages sont
 > intégrés (rubriques financières du compte de résultat, frais et TVA des opérateurs mobile money,
 > comptes 552 et 585).
 
@@ -29,20 +29,19 @@ restent propres à chaque État : le plugin demande le taux applicable au lieu d
   /plugin install syscohada-assistant@tsalach-ventures
   ```
 
-- **Cowork** : importer le fichier `.plugin` joint à la dernière version publiée (onglet *Releases* du
-  dépôt).
+- **Cowork** : importer l'archive du plugin (fichier `.plugin` ou `.zip`) jointe à la dernière version
+  publiée (onglet *Releases* du dépôt).
 - **Annuaire des plugins Claude** : lien ajouté ici après publication.
 
 ## Exemple : rapprochement mobile money
 
-```bash
-cd skills/mobile-money
-python3 scripts/rapprocher.py --releve examples/releve-exemple.csv --pieces examples/pieces-exemple.csv
-```
+Demander à Claude : « Rapproche le relevé releve-exemple.csv avec les pièces pieces-exemple.csv », deux
+fichiers fictifs fournis dans `skills/mobile-money/examples/`. Claude applique la méthode de la skill avec
+ses propres outils et obtient : 3 opérations rapprochées, 3 lignes de frais, 2 transferts internes probables,
+1 opération non rapprochée, 1 facture sans paiement, et le contrôle du solde final.
 
-Résultat sur les données fictives fournies : 3 opérations rapprochées, 3 lignes de frais, 2 transferts
-internes probables, 1 opération non rapprochée, 1 facture sans paiement, et le contrôle du solde final.
-Formats acceptés : `skills/mobile-money/references/format-csv.md`.
+Méthode : `skills/mobile-money/references/methode-rapprochement.md`. Formats acceptés :
+`skills/mobile-money/references/format-csv.md`.
 
 ## Limites
 
@@ -55,12 +54,11 @@ Formats acceptés : `skills/mobile-money/references/format-csv.md`.
 
 ## Confidentialité
 
-- Le plugin ne collecte, ne stocke et ne transmet aucune donnée : il contient des instructions pour Claude
-  et un script qui s'exécute localement sur les fichiers fournis par l'utilisateur.
-- Ce que le script exécute : `rapprocher.py` n'utilise que la bibliothèque standard de Python et n'accède
-  pas au réseau. Il lit le relevé CSV (et, en option, la liste des pièces), affiche un résumé et écrit un
-  fichier CSV de résultat (par défaut `rapprochement.csv` dans le dossier courant).
-- Le script de rapprochement masque les numéros de téléphone dans son fichier de sortie.
+- Le plugin ne collecte, ne stocke et ne transmet aucune donnée. Il ne contient aucun code exécutable :
+  seulement des instructions pour Claude (Markdown), des fichiers d'exemple fictifs (CSV) et son manifeste
+  (JSON).
+- Pour un rapprochement, Claude lit les fichiers que vous lui fournissez et applique la méthode de la skill
+  avec ses propres outils, dans votre session. Les numéros de téléphone sont masqués dans les résultats.
 - Détails : [PRIVACY.md](PRIVACY.md). Signaler une vulnérabilité : [SECURITY.md](SECURITY.md).
 - Contact : steph@tsalach.ventures
 
@@ -82,10 +80,11 @@ Licence MIT. Édité par Tsalach Ventures LLC.
 ## English summary
 
 French-language Claude plugin for the 17 OHADA member states (SYSCOHADA révisé accounting framework):
-chart of accounts lookup, balanced journal entries, mobile money statement reconciliation (read-only
-script), income statement from a trial balance, and a SYSCOHADA-to-IFRS restatement checklist. It
-collects no data and never executes payments. Its only executable part is a local Python script (standard
-library only, no network access) that reads a CSV statement, optionally a CSV list of invoices, and writes
-one CSV result file. Version 0.1.4: the accounting content was reviewed by a chartered accountant in
+chart of accounts lookup, balanced journal entries, mobile money statement reconciliation (a documented,
+read-only method), income statement from a trial balance, and a SYSCOHADA-to-IFRS restatement checklist.
+It collects no data, never executes payments and contains no executable code: only instructions
+(Markdown), fictitious examples (CSV) and its manifest (JSON). For a reconciliation, Claude reads the files
+you provide and applies the documented method with its own tools, in your session. Version 0.1.5: the
+accounting content was reviewed by a chartered accountant in
 October 2026. Independent project, not affiliated with or endorsed by OHADA. Privacy: [PRIVACY.md](PRIVACY.md).
 Security: [SECURITY.md](SECURITY.md).

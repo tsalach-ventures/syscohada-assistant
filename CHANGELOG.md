@@ -1,5 +1,17 @@
 # Journal des versions
 
+## 0.1.5 — 09/11/2026
+
+Édition conforme à la règle de l'annuaire des plugins Claude, qui n'accepte les scripts que des
+organisations vérifiées. Le contenu comptable ne change pas.
+
+- Le script de rapprochement est retiré : le plugin ne contient plus aucun code exécutable.
+- La skill `mobile-money` décrit sa méthode dans `references/methode-rapprochement.md`. Claude l'applique
+  avec ses propres outils, avec les mêmes règles (fenêtre de 60 jours, tolérance de 3 jours, frais en 6317
+  ou 6318, transferts en 585, numéros masqués) et le même résultat sur les fichiers d'exemple.
+- `references/format-csv.md` décrit les formats lus, sans les options de l'ancien script.
+- README, PRIVACY.md et SECURITY.md mis à jour en conséquence.
+
 ## 0.1.4 — 09/11/2026
 
 Mise en conformité avec la vérification de l'annuaire des plugins Claude. Le contenu comptable ne change pas.

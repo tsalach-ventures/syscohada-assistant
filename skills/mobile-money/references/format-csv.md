@@ -1,55 +1,42 @@
-# Formats CSV pris en charge par `scripts/rapprocher.py`
+# Formats des fichiers CSV
 
-Le script lit des fichiers CSV encodés en UTF-8 ou Windows-1252, avec séparateur point-virgule, virgule,
-tabulation ou barre verticale (détection automatique). Les intitulés de colonnes sont reconnus sans tenir
-compte des accents ni des majuscules.
+Formats que la méthode de rapprochement (`methode-rapprochement.md`) sait lire. Les intitulés de colonnes
+se comparent sans accents ni majuscules.
 
-## Relevé mobile money (`--releve`)
+## Lecture
 
-| Champ | Obligatoire | Intitulés reconnus | Remarque |
+- Encodage : UTF-8 (avec ou sans BOM) ou Windows-1252.
+- Séparateur : point-virgule, virgule, tabulation ou barre verticale, déterminé d'après la ligne d'en-tête.
+- Dates : JJ/MM/AAAA, JJ/MM/AA, JJ-MM-AAAA, JJ.MM.AAAA ou AAAA-MM-JJ, avec ou sans heure (HH:MM ou
+  HH:MM:SS ; « T » accepté entre la date et l'heure).
+- Montants : espaces, points ou virgules comme séparateurs de milliers (« 1 180 000 », « 1.180.000 ») ;
+  signe moins ou parenthèses pour les négatifs ; suffixes FCFA, XOF ou XAF ignorés. Quand points et virgules
+  coexistent, le dernier des deux est le séparateur décimal. Avec un seul type de séparateur, il est décimal
+  seulement s'il n'apparaît qu'une fois et n'est pas suivi d'exactement 3 chiffres (« 12,50 » vaut 12,5 ;
+  « 1,180 » vaut 1 180).
+- Colonne indispensable introuvable : demander à l'utilisateur l'intitulé à utiliser, sans deviner.
+
+## Relevé mobile money
+
+| Champ | Obligatoire | Intitulés usuels | Remarque |
 | --- | --- | --- | --- |
-| date | Oui | Date, Date opération, Date transaction | JJ/MM/AAAA, AAAA-MM-JJ, avec ou sans heure |
-| montant | Oui | Montant, Amount, Montant (FCFA), Valeur | Positif = entrée, négatif = sortie, sauf si une colonne sens existe |
-| reference | Non | Référence, Ref, ID transaction | Sert au rapprochement par référence |
-| libelle | Non | Libellé, Description, Détails, Motif, Bénéficiaire | Les numéros de téléphone sont masqués dans la sortie |
-| frais | Non | Frais, Fees, Commission | Montant des frais prélevés en plus du montant de l'opération |
-| sens | Non | Sens, Direction, Entrée/Sortie, Débit/Crédit | Valeurs reconnues : entrée, crédit, reçu / sortie, débit, paiement, retrait |
-| solde | Non | Solde, Balance, Solde après opération | Permet le contrôle du solde final |
+| date | Oui | Date, Date opération, Date de l'opération, Date transaction, Date de transaction | Voir les formats de date ci-dessus |
+| montant | Oui | Montant, Amount, Montant (FCFA), Montant FCFA, Montant XOF, Valeur | Positif = entrée, négatif = sortie, sauf si une colonne sens existe |
+| reference | Non | Référence, Ref, ID transaction, Transaction ID, Numéro transaction, ID | Sert au rapprochement par référence |
+| libelle | Non | Libellé, Description, Détails, Détail, Contrepartie, Motif, Bénéficiaire | Numéros de téléphone masqués dans tout résultat |
+| frais | Non | Frais, Fees, Fee, Commission, Commissions | Frais prélevés en plus du montant de l'opération |
+| sens | Non | Sens, Direction, Entrée/Sortie, Débit/Crédit, Nature | Valeurs reconnues : voir la méthode, section 1 |
+| solde | Non | Solde, Balance, Solde après, Solde après opération, Nouveau solde | Permet le contrôle du solde final |
 
 Hypothèse importante : la colonne montant n'inclut pas les frais. Si l'export de l'opérateur inclut les frais
-dans le montant, ne pas renseigner de colonne frais (ou la neutraliser) pour éviter un double comptage.
+dans le montant, ignorer la colonne frais pour éviter un double comptage, et le dire à l'utilisateur.
 
-Les montants acceptent les espaces, points ou virgules comme séparateurs de milliers (« 1 180 000 »,
-« 1.180.000 »), les parenthèses pour les négatifs et les suffixes FCFA, XOF ou XAF.
+## Pièces (optionnel)
 
-## Pièces (`--pieces`, optionnel)
-
-| Champ | Obligatoire | Intitulés reconnus |
+| Champ | Obligatoire | Intitulés usuels |
 | --- | --- | --- |
-| reference | Oui | Référence, Numéro facture, Facture, Pièce |
-| montant | Oui | Montant TTC, TTC, Total TTC, Net à payer, Montant |
-| date | Non | Date, Date facture, Date pièce |
+| reference | Oui | Référence, Ref, Numéro, Numéro facture, Facture, Pièce |
+| montant | Oui | Montant, Montant TTC, TTC, Total TTC, Amount, Net à payer |
+| date | Non | Date, Date facture, Date pièce, Date de facture |
 | tiers | Non | Tiers, Client, Fournisseur, Nom, Raison sociale |
-| type | Non | Type, Nature (valeurs : client, fournisseur) |
-
-## Règles de rapprochement
-
-1. Un mouvement est rapproché d'une pièce de même montant exact (en valeur absolue) et de type cohérent :
-   entrée ↔ client, sortie ↔ fournisseur.
-2. La date du paiement doit être comprise entre 3 jours avant la pièce (`--tolerance-jours`) et 60 jours
-   après (`--fenetre-jours`).
-3. Priorité aux pièces dont la référence apparaît dans la référence ou le libellé du mouvement, puis à l'écart
-   de dates le plus faible. Chaque pièce n'est utilisée qu'une fois.
-4. Sans pièce : les libellés contenant « frais » ou « commission » sont classés en frais (compte 6317,
-   montant TTC tant qu'aucune facture conforme de l'opérateur ne permet de déduire la TVA en 4454) ; ceux
-   qui évoquent un dépôt, un retrait ou un virement sont classés en transfert interne probable (compte 585) ;
-   le reste est « non rapproché » et appelle une question à l'utilisateur.
-
-Note : Compte 6317 (Frais sur instruments de monnaie électronique) selon la nomenclature officielle SYSCOHADA révisé, paramétrable en 6318 si le plan de comptes interne de l'entité n'a pas éclaté le compte 631. Option du script : `--compte-frais 6318`.
-
-## Sortie
-
-Fichier CSV (séparateur point-virgule) : date, référence, libellé masqué, montant, statut, pièce retenue,
-tiers, écart en jours, compte de contrepartie proposé, commentaire. Le résumé affiché indique les totaux par
-statut, les pièces sans paiement et, si la colonne solde existe, le solde final et le solde d'ouverture
-implicite à comparer au compte 552.
+| type | Non | Type, Nature, Sens (valeurs commençant par client ou fournisseur) |
