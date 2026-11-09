@@ -7,7 +7,7 @@ description: >
   Orange Money / Wave », « relevé MoMo », « compte 552 », ou fournit l'export CSV d'un portefeuille
   électronique d'entreprise dans l'espace OHADA.
 metadata:
-  version: "0.1.5"
+  version: "0.1.6"
 ---
 
 # Rapprochement mobile money (SYSCOHADA)
@@ -46,7 +46,7 @@ préparer les écritures. Travail en lecture seule.
    probables et le reste.
 3. Présenter un tableau par statut (rapproché, frais, transfert interne probable, non rapproché), puis le
    détail et, sur demande, un fichier CSV de résultat. En cas de doute sur l'application de la méthode, la
-   vérifier d'abord sur les fichiers d'exemple (résultat attendu ci-dessous).
+   vérifier d'abord sur les exemples (résultat attendu ci-dessous).
 4. Préparer les écritures des lignes rapprochées, des frais et des transferts avec la skill `ecritures`
    (journal MM). Pour chaque ligne non rapprochée, poser une question précise (qui, pourquoi, quelle pièce).
 5. Contrôler le solde : le solde final du relevé doit égaler le solde du compte 552 (ou du sous-compte) après
@@ -63,6 +63,7 @@ préparer les écritures. Travail en lecture seule.
 
 ## Exemple
 
-`examples/releve-exemple.csv` et `examples/pieces-exemple.csv` (données fictives) : 7 opérations, 3
-rapprochées, 3 lignes de frais, 2 transferts internes probables, 1 opération non rapprochée, 1 facture sans
-paiement, un solde final de 484 050 et un solde d'ouverture implicite de 250 000.
+`examples/exemples-rapprochement.md` contient un relevé et un fichier de pièces fictifs, en blocs CSV.
+Résultat attendu : 7 opérations, 3 rapprochées, 3 lignes de frais, 2 transferts internes probables,
+1 opération non rapprochée, 1 facture sans paiement, un solde final de 484 050 et un solde d'ouverture
+implicite de 250 000.

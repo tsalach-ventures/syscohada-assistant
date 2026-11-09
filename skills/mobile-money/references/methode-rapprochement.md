@@ -84,9 +84,9 @@ Un rapprochement « montant et date », sans référence retrouvée, reste une p
   d'ouverture implicite = solde final moins la variation nette. Comparer le solde final au solde du compte
   552 (ou de son sous-compte) après écritures.
 
-## 6. Contrôle sur les fichiers d'exemple
+## 6. Contrôle sur les exemples
 
-Avec `examples/releve-exemple.csv` et `examples/pieces-exemple.csv` (données fictives), la méthode donne :
+Avec le relevé et les pièces de `examples/exemples-rapprochement.md` (données fictives), la méthode donne :
 7 mouvements et 4 pièces lus ; 3 lignes rapprochées, 3 lignes de frais, 2 transferts internes probables et
 1 ligne non rapprochée ; 1 pièce sans paiement (FAC-2026-040) ; une variation nette de 234 050 ; un solde
 final de 484 050 et un solde d'ouverture implicite de 250 000. Un autre résultat signale une erreur

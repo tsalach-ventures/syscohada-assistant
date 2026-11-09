@@ -15,9 +15,12 @@ Seule la dernière version publiée reçoit des correctifs.
 
 ## Périmètre
 
-Le plugin n'exécute aucun paiement, ne demande aucun identifiant, n'accède pas au réseau et ne contient
-aucun code exécutable : seulement des instructions (Markdown), des exemples fictifs (CSV) et son manifeste
-(JSON).
+Le plugin :
+
+- n'exécute aucun paiement et ne demande aucun identifiant ;
+- n'accède pas au réseau ;
+- ne contient aucun code exécutable, seulement des fichiers Markdown pour les instructions et les exemples
+  fictifs, son manifeste JSON et son icône.
 
 ---
 
@@ -35,5 +38,9 @@ Only the latest published version receives fixes.
 
 ## Scope
 
-The plugin executes no payments, asks for no credentials, has no network access and contains no executable
-code: only instructions (Markdown), fictitious examples (CSV) and its manifest (JSON).
+The plugin:
+
+- executes no payments and asks for no credentials;
+- has no network access;
+- contains no executable code, only Markdown files for the instructions and the fictitious examples, its
+  JSON manifest and its icon.

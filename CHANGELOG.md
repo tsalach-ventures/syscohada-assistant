@@ -1,5 +1,16 @@
 # Journal des versions
 
+## 0.1.6 — 09/11/2026
+
+D'une organisation non vérifiée, l'annuaire des plugins Claude n'accepte que des fichiers Markdown, texte,
+JSON, YAML ou image. La 0.1.6 range donc les deux exemples CSV dans un fichier Markdown. Le contenu comptable
+ne change pas.
+
+- Les deux exemples deviennent des blocs CSV dans `skills/mobile-money/examples/exemples-rapprochement.md` :
+  mêmes données, même résultat attendu.
+- SECURITY.md : le périmètre est présenté en liste.
+- README, PRIVACY.md, la skill `mobile-money` et sa méthode renvoient au nouveau fichier d'exemples.
+
 ## 0.1.5 — 09/11/2026
 
 Édition conforme à la règle de l'annuaire des plugins Claude, qui n'accepte les scripts que des

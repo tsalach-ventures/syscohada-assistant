@@ -10,7 +10,7 @@ que vous traitez avec lui.
 ## Ce que contient le plugin
 
 - Des instructions (skills) que Claude lit pour vous aider à appliquer le SYSCOHADA révisé.
-- Des fichiers d'exemple fictifs (CSV) et le manifeste du plugin (JSON).
+- Des exemples fictifs en Markdown, le manifeste du plugin en JSON et son icône.
 
 Le plugin ne contient aucun code exécutable.
 
@@ -50,7 +50,7 @@ with it.
 ## What the plugin contains
 
 - Instructions (skills) that Claude reads to help you apply the revised SYSCOHADA framework.
-- Fictitious example files (CSV) and the plugin manifest (JSON).
+- Fictitious examples in Markdown, the plugin manifest in JSON and its icon.
 
 The plugin contains no executable code.
 
