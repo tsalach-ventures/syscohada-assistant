@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Rapprochement d'un relevé mobile money avec une liste de pièces (factures).
 
 Lecture seule : le script lit deux fichiers CSV et écrit un rapport CSV. Il n'initie aucun paiement,

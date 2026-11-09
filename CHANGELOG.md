@@ -1,5 +1,14 @@
 # Journal des versions
 
+## 0.1.4 — 09/11/2026
+
+Mise en conformité avec la vérification de l'annuaire des plugins Claude. Le contenu comptable ne change pas.
+
+- Le script de rapprochement ne commence plus par une ligne « #! » : il se lance avec `python3`, comme
+  l'indiquent la skill et le README.
+- La skill `mobile-money` appelle son script avec `${CLAUDE_SKILL_DIR}`, comme le recommande la
+  documentation des skills, pour qu'il se lance quel que soit le dossier de travail.
+
 ## 0.1.3 — 27/10/2026
 
 L'icône de la fiche est désormais déclarée dans le manifeste (champ icon de plugin.json), en plus de son

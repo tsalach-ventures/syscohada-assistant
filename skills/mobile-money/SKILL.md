@@ -35,11 +35,14 @@ préparer les écritures. Travail en lecture seule.
 
 1. Obtenir l'export du relevé (CSV) et, si possible, la liste des factures clients et fournisseurs de la
    période (CSV).
-2. Exécuter le script de rapprochement depuis le dossier de cette skill :
+2. Exécuter le script de rapprochement de cette skill :
 
    ```bash
-   python3 scripts/rapprocher.py --releve <releve.csv> --pieces <pieces.csv> --sortie rapprochement.csv
+   python3 ${CLAUDE_SKILL_DIR}/scripts/rapprocher.py --releve <releve.csv> --pieces <pieces.csv> --sortie rapprochement.csv
    ```
+
+   Dans le chat de claude.ai, le dossier de la skill est copié dans l'environnement d'exécution : le script
+   s'y trouve à `scripts/rapprocher.py`, à côté de ce fichier.
 
    Colonnes, formats et options : `references/format-csv.md`. Si une colonne n'est pas reconnue, relancer
    avec `--col-date`, `--col-montant`, etc. Si l'entité n'a pas éclaté le compte 631, ajouter
